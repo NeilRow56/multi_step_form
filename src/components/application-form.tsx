@@ -56,7 +56,7 @@ const steps = [
     component: ResumeUploader,
     inputs: ['resume']
   }
-]
+] satisfies Step[]
 
 export default function ApplicationForm() {
   const form = useForm<FormSchemaType>({
