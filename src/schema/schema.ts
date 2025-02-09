@@ -101,11 +101,11 @@ export const formSchema = z.object({
     .string()
     .min(2, { message: 'Country must be at least 2 characters' })
     .max(70, { message: 'Country must be at most 70 characters' }),
-  state: z
+  county: z
     .string()
     .min(2, { message: 'State must be at least 2 characters' })
     .max(70, { message: 'State must be at most 70 characters' }),
-  city: z
+  town: z
     .string()
     .min(2, { message: 'City must be at least 2 characters' })
     .max(70, { message: 'City must be at most 70 characters' }),
