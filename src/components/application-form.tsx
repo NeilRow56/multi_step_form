@@ -8,6 +8,11 @@ import AddressInformation from './steps/address-information'
 import SocialLinks from './steps/social-links'
 import ResumeUploader from './steps/resume-uploader'
 import WorkExperience from './steps/work-experience'
+import { Form } from './ui/form'
+import { FormControlsProvider } from '@/hooks/use-form'
+import FormHeader from './form-header'
+import RenderComponent from './render-component'
+import FormFooter from './form-footer'
 
 export type Step = {
   id: string
@@ -30,7 +35,7 @@ const steps = [
     title: 'Address',
     description: 'Enter your address information.',
     component: AddressInformation,
-    inputs: ['country', 'state', 'city', 'address', 'zip', 'timezone']
+    inputs: ['country', 'county', 'town', 'address', 'postCode', 'timezone']
   },
   {
     id: '3',
@@ -78,5 +83,24 @@ export default function ApplicationForm() {
     }
   })
 
-  return <div> Application Form</div>
+  const onSubmit = (values: FormSchemaType) => {
+    console.log(values)
+  }
+
+  return (
+    <div>
+      <FormControlsProvider steps={steps}>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='flex h-svh flex-col justify-between space-y-8 py-20'
+          >
+            <FormHeader steps={steps} />
+            <RenderComponent steps={steps} />
+            <FormFooter steps={steps} />
+          </form>
+        </Form>
+      </FormControlsProvider>
+    </div>
+  )
 }
